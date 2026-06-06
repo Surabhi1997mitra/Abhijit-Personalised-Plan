@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#1a1a1a">
+<title>Abhijeet — Recovery & Nourishment Plan</title>
+<style>
+:root {
+  --serif: 'Georgia', 'Times New Roman', serif;
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --ink: #1a1a1a; --ink-mid: #444; --ink-soft: #888;
+  --paper: #faf8f4; --warm: #f2ede4;
+  --accent: #1a6b5a; --accent-soft: #e6f4f1;
+  --red: #c0392b; --red-soft: #fdf0ee;
+  --teal: #1a6b5a; --teal-soft: #e6f4f1;
+  --amber-soft: #fdf4e3; --amber: #c17f24;
+  --border: #e2dcd3;
+  --info: #1d56c4; --info-soft: #eef3fd;
+  --nav: 60px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;background:var(--paper)}
+body{font-family:var(--sans);color:var(--ink);font-size:15px;line-height:1.7;padding-bottom:calc(var(--nav) + 12px)}
+
+/* BOTTOM NAV */
+.bnav{position:fixed;bottom:0;left:0;right:0;height:var(--nav);background:#111;display:flex;z-index:999;border-top:1px solid rgba(255,255,255,0.07);box-shadow:0 -4px 20px rgba(0,0,0,0.3)}
+.bnav a{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-decoration:none;color:rgba(255,255,255,0.38);font-size:9px;letter-spacing:0.06em;text-transform:uppercase;font-family:var(--sans);transition:color 0.15s;padding-bottom:env(safe-area-inset-bottom,0px)}
+.bnav-icon{font-size:18px;line-height:1}
+
+/* COVER */
+#cover{background:var(--ink);color:#fff;padding:52px 22px 52px;position:relative;overflow:hidden}
+#cover::before{content:'';position:absolute;top:-60px;right:-60px;width:260px;height:260px;border-radius:50%;border:1px solid rgba(255,255,255,0.05);pointer-events:none}
+#cover::after{content:'';position:absolute;bottom:-40px;left:20%;width:180px;height:180px;border-radius:50%;border:1px solid rgba(255,255,255,0.03);pointer-events:none}
+.cover-eyebrow{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:18px}
+.cover-name{font-family:var(--serif);font-size:52px;line-height:1.0;margin-bottom:14px;font-weight:400}
+.cover-name em{color:#4ec994;font-style:italic}
+.cover-sub{font-size:14px;color:rgba(255,255,255,0.45);line-height:1.7;margin-bottom:28px;max-width:300px}
+.cover-pills{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:28px}
+.cpill{font-size:11px;padding:4px 11px;border-radius:20px;border:1px solid rgba(255,255,255,0.14);color:rgba(255,255,255,0.55)}
+.cover-coach{font-family:var(--serif);font-size:18px;font-style:italic;color:rgba(255,255,255,0.5)}
+.cover-role{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.22);margin-top:3px}
+
+/* SECTION STRUCTURE */
+.sec-anchor{display:block}
+.ph{padding:28px 20px 16px;border-bottom:1px solid var(--border);background:var(--paper)}
+.ph-eye{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
+.ph-title{font-family:var(--serif);font-size:28px;font-weight:400;line-height:1.15;color:var(--ink)}
+.cx{padding:18px 16px}
+
+/* CARDS */
+.card{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:12px}
+.card.hi{border-color:var(--teal);border-width:2px}
+.card.hi-red{border-color:var(--red);border-width:2px}
+.ch{padding:13px 15px;background:var(--warm);border-bottom:1px solid var(--border)}
+.ch.acc{background:var(--accent-soft)}
+.ch.teal{background:var(--teal-soft)}
+.ch.info{background:var(--info-soft)}
+.ch.amber{background:var(--amber-soft)}
+.ch.red{background:var(--red-soft)}
+.ch.dark{background:#1a1a1a}
+.ct{font-weight:500;font-size:14px;line-height:1.4}
+.ch.acc .ct{color:var(--teal)}
+.ch.teal .ct{color:var(--teal)}
+.ch.info .ct{color:var(--info)}
+.ch.amber .ct{color:var(--amber)}
+.ch.red .ct{color:var(--red)}
+.ch.dark .ct{color:#fff}
+.cm{font-size:11px;color:var(--ink-soft);margin-top:3px}
+.ch.dark .cm{color:rgba(255,255,255,0.4)}
+.cb{padding:13px 15px;font-size:13.5px;color:var(--ink-mid);line-height:1.8}
+
+/* ALERTS */
+.al{border-radius:10px;padding:12px 14px;margin-bottom:11px;font-size:13.5px;line-height:1.7}
+.al.d{background:var(--red-soft);border-left:3px solid var(--red);color:#7a1a14}
+.al.w{background:var(--amber-soft);border-left:3px solid var(--amber);color:#5a3a0a}
+.al.ok{background:var(--teal-soft);border-left:3px solid var(--teal);color:#0d3d30}
+.al.i{background:var(--info-soft);border-left:3px solid var(--info);color:#1a3a8a}
+.al b,.al strong{font-weight:600}
+
+/* NOTES */
+.nt{border-radius:8px;padding:9px 11px;margin-top:10px;font-size:12.5px;line-height:1.65}
+.nt.d{background:var(--red-soft);color:#7a1a14}
+.nt.w{background:var(--amber-soft);color:#5a3a0a}
+.nt.ok{background:var(--teal-soft);color:#0d3d30}
+.nt.i{background:var(--info-soft);color:#1a3a8a}
+
+/* BADGES */
+.bx{display:inline-block;font-size:9.5px;font-weight:600;padding:2px 7px;border-radius:20px;margin-left:4px;vertical-align:middle}
+.bx.ok{background:var(--teal);color:#fff}
+.bx.i{background:var(--info);color:#fff}
+.bx.w{background:var(--amber);color:#fff}
+.bx.d{background:var(--red);color:#fff}
+
+/* STATS GRID */
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:14px}
+.stats.three{grid-template-columns:1fr 1fr 1fr}
+.st{background:var(--paper);padding:14px 12px}
+.stl{font-size:10px;color:var(--ink-soft);letter-spacing:0.03em;margin-bottom:3px}
+.stv{font-family:var(--serif);font-size:21px;color:var(--ink);line-height:1}
+.stu{font-size:10px;color:var(--ink-soft);margin-top:2px}
+.st.tl{background:var(--teal-soft)}.st.tl .stv{color:var(--teal)}
+.st.wn{background:var(--amber-soft)}.st.wn .stv{color:var(--amber)}
+.st.inf{background:var(--info-soft)}.st.inf .stv{color:var(--info)}
+
+/* TABLE ROWS */
+.tr{border-bottom:1px solid var(--border);padding:13px 15px}
+.tr:last-child{border-bottom:none}
+.trm{font-size:10px;font-weight:600;color:var(--ink-soft);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:3px}
+.trv{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:3px}
+.trd{font-size:12.5px;color:var(--ink-mid);line-height:1.6}
+
+/* SNACKS */
+.snk{background:var(--warm);border:1px solid var(--border);border-radius:12px;padding:13px 14px;margin-bottom:10px}
+.snkn{font-weight:600;font-size:14px;color:var(--ink);margin-bottom:5px}
+.snkb{font-size:13px;color:var(--ink-mid);line-height:1.7;margin-bottom:5px}
+.snkm{font-size:11px;color:var(--ink-soft)}
+
+/* SECTION LABELS */
+.div{height:1px;background:var(--border);margin:22px 0}
+.slbl{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal);margin-bottom:7px}
+.stit{font-family:var(--serif);font-size:22px;font-weight:400;line-height:1.2;margin-bottom:13px}
+
+/* MACRO BAR */
+.macro-bar{margin:14px 0 6px}
+.macro-bar-label{display:flex;justify-content:space-between;font-size:11px;color:var(--ink-soft);margin-bottom:5px}
+.macro-bar-track{height:6px;background:var(--border);border-radius:10px;overflow:hidden;display:flex;gap:2px}
+.mb-p{background:#1a6b5a;height:100%;border-radius:10px}
+.mb-c{background:#1d56c4;height:100%;border-radius:10px}
+.mb-f{background:#c17f24;height:100%;border-radius:10px}
+.macro-legend{display:flex;gap:12px;margin-top:6px;flex-wrap:wrap}
+.ml-item{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--ink-soft)}
+.ml-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+/* DAY TOGGLE */
+.day-toggle-wrap{display:flex;gap:0;border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:14px}
+.day-toggle-btn{flex:1;padding:10px;text-align:center;font-size:12px;font-weight:500;cursor:pointer;background:var(--paper);color:var(--ink-soft);border:none;font-family:var(--sans);transition:all 0.2s}
+.day-toggle-btn.active{background:var(--ink);color:#fff}
+.diet-variant{display:none}
+.diet-variant.active{display:block}
+
+/* WEEK STRIP */
+.week-strip{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:16px}
+.wday{background:var(--paper);padding:12px 4px;text-align:center}
+.wday.active-day{background:#1a1a1a}
+.wday.rest{background:var(--warm)}
+.wd-name{font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:5px}
+.wday.active-day .wd-name{color:rgba(255,255,255,0.4)}
+.wd-icon{font-size:17px;margin-bottom:3px}
+.wd-label{font-size:10px;font-weight:600;color:var(--ink);line-height:1.3}
+.wday.active-day .wd-label{color:#4ec994}
+.wday.rest .wd-label{color:var(--ink-soft)}
+
+/* EXERCISE ROWS */
+.ex-row{border-bottom:1px solid var(--border);padding:11px 15px;display:flex;gap:12px;align-items:flex-start}
+.ex-row:last-child{border-bottom:none}
+.ex-n{width:22px;height:22px;border-radius:6px;background:var(--warm);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:11px;font-weight:600;color:var(--ink-soft);flex-shrink:0;margin-top:2px}
+.ex-row.mob .ex-n{background:var(--teal-soft);color:var(--teal)}
+.ex-name{font-size:13.5px;font-weight:500;color:var(--ink);margin-bottom:2px}
+.ex-sets{font-size:12px;color:var(--ink-soft)}
+
+/* MOBILITY SECTION */
+.mob-row{display:flex;justify-content:space-between;align-items:flex-start;padding:9px 13px;border-bottom:1px solid var(--border);font-size:13px;color:var(--ink-mid)}
+.mob-row:last-child{border-bottom:none}
+.mob-sets{font-size:11px;color:var(--ink-soft);flex-shrink:0;margin-left:8px}
+
+/* SUPPLEMENT CARD */
+.supp-item{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 15px;margin-bottom:10px;display:flex;gap:13px;align-items:flex-start}
+.supp-icon{font-size:26px;flex-shrink:0;margin-top:2px}
+.supp-name{font-weight:600;font-size:14px;color:var(--ink);margin-bottom:3px}
+.supp-desc{font-size:12.5px;color:var(--ink-mid);line-height:1.6;margin-bottom:4px}
+.supp-timing{font-size:11px;color:var(--teal);font-weight:600}
+
+/* MEAL OPTIONS */
+.meal-opt{background:var(--warm);border:1px solid var(--border);border-radius:10px;padding:11px 13px;margin-bottom:8px}
+.meal-opt-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-soft);margin-bottom:6px}
+.meal-opt-body{font-size:13.5px;color:var(--ink-mid);line-height:1.75}
+.meal-opt-macro{font-size:11px;color:var(--ink-soft);margin-top:5px}
+
+/* NOTES SECTION */
+.notes-section{background:#fffef9;border-top:3px solid var(--amber)}
+.notes-ph{padding:28px 20px 16px;border-bottom:1px solid var(--border)}
+.notes-ph .ph-eye{color:var(--amber)}
+.notes-ph .ph-title{color:var(--ink)}
+.checkin-row{border-bottom:1px solid var(--border);padding:12px 15px;display:flex;gap:10px;align-items:flex-start}
+.checkin-row:last-child{border-bottom:none}
+.checkin-icon{font-size:18px;flex-shrink:0;margin-top:2px}
+.checkin-label{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:2px}
+.checkin-desc{font-size:12px;color:var(--ink-soft);line-height:1.6}
+
+/* FOOTER */
+.foot{background:var(--ink);color:rgba(255,255,255,0.38);padding:26px 20px;font-size:12px;line-height:1.7;margin-top:6px}
+.footn{font-family:var(--serif);font-size:20px;font-style:italic;color:rgba(255,255,255,0.6);margin-bottom:6px}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div id="cover">
+  <div class="cover-eyebrow">Recovery · Nourishment · Gentle Strength — Phase 1</div>
+  <div class="cover-name">Abhijeet<br><em>Kumar</em></div>
+  <div class="cover-sub">A gentle, structured start — built around your body, your medications, and your real life.</div>
+  <div class="cover-pills">
+    <span class="cpill">167 cm · 58 kg</span>
+    <span class="cpill">Ankylosing Spondylitis</span>
+    <span class="cpill">TB Recovery · In Treatment</span>
+    <span class="cpill">2,000–2,100 kcal</span>
+    <span class="cpill">60g Protein</span>
+    <span class="cpill">Pure Vegetarian</span>
+    <span class="cpill">3× Home · Bands</span>
+  </div>
+  <div class="cover-coach">Your Coach</div>
+  <div class="cover-role">YourFitMitra · Weight Restoration · June 2026</div>
+</div>
+
+<!-- OVERVIEW SECTION -->
+<div id="overview" class="sec-anchor"></div>
+<div class="ph">
+  <div class="ph-eye">Overview</div>
+  <div class="ph-title">Where you are now,<br>and where we're going.</div>
+</div>
+<div class="cx">
+
+  <div class="al ok"><strong>Your goal right now is simple:</strong> Eat well, move gently, and give your body the consistency and nourishment it needs to recover. Everything in this plan is designed around that — nothing is complicated, nothing will overwhelm you.</div>
+
+  <div class="slbl">What this phase is about</div>
+  <div class="card hi">
+    <div class="ch teal"><div class="ct">Phase 1 — Restore, Nourish, Reduce Inflammation</div></div>
+    <div>
+      <div class="tr"><div class="trm">Priority 1</div><div class="trv">Reduce inflammation</div><div class="trd">Your body is currently dealing with active inflammation. The right food, sleep, and gentle movement directly help lower this. This is the foundation everything else is built on.</div></div>
+      <div class="tr"><div class="trm">Priority 2</div><div class="trv">Restore weight & energy</div><div class="trd">At 58 kg, your body needs consistent, nourishing calories — especially protein. The target is a very gentle +0.5 kg muscle restoration this month, not aggressive gain.</div></div>
+      <div class="tr"><div class="trm">Priority 3</div><div class="trv">Build a routine that sticks</div><div class="trd">3 home sessions/week, regular meals, and daily physio. Small habits done consistently create real change — even when medications make things feel unpredictable.</div></div>
+      <div class="tr"><div class="trm">NOT a goal right now</div><div class="trv">Aggressive muscle gain or 70 kg</div><div class="trd">That will come — but the body cannot build muscle well when inflammation is high. Reduce it first, build after. This is the right sequence.</div></div>
+    </div>
+  </div>
+
+  <div class="slbl">Your numbers</div>
+  <div class="stats three">
+    <div class="st tl"><div class="stl">Target Calories</div><div class="stv">2,100</div><div class="stu">kcal / day</div></div>
+    <div class="st"><div class="stl">Protein</div><div class="stv">60g</div><div class="stu">1g per kg BW</div></div>
+    <div class="st wn"><div class="stl">Fibre</div><div class="stv">30g+</div><div class="stu">anti-inflammatory</div></div>
+  </div>
+  <div class="stats">
+    <div class="st inf"><div class="stl">Carbs</div><div class="stv">300g</div><div class="stu">primary fuel</div></div>
+    <div class="st"><div class="stl">Fat</div><div class="stv">55g</div><div class="stu">healthy sources</div></div>
+  </div>
+
+  <div class="macro-bar">
+    <div class="macro-bar-label"><span>Macro split — 2,100 kcal</span><span>240 + 1,200 + 495 kcal</span></div>
+    <div class="macro-bar-track">
+      <div class="mb-p" style="width:12%"></div>
+      <div class="mb-c" style="width:58%"></div>
+      <div class="mb-f" style="width:30%"></div>
+    </div>
+    <div class="macro-legend">
+      <div class="ml-item"><div class="ml-dot" style="background:#1a6b5a"></div>Protein 60g · 12%</div>
+      <div class="ml-item"><div class="ml-dot" style="background:#1d56c4"></div>Carbs 300g · 58%</div>
+      <div class="ml-item"><div class="ml-dot" style="background:#c17f24"></div>Fat 55g · 30%</div>
+    </div>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="slbl">Important — medication & diet rules</div>
+  <div class="stit">4 things to always<br>keep in mind.</div>
+
+  <div class="card hi-red">
+    <div class="ch red"><div class="ct">1 — Never eat on an empty stomach</div></div>
+    <div class="cb">Some of your medications can be hard on the stomach lining when taken without food. Always have something to eat before any tablet — never on an empty stomach.
+      <div class="nt w">Even a small banana or 2 biscuits counts. Don't skip this.</div>
+    </div>
+  </div>
+
+  <div class="card hi-red">
+    <div class="ch red"><div class="ct">2 — Tea & coffee: minimum 1 hour gap from meals</div></div>
+    <div class="cb">Tea and coffee can reduce absorption of certain nutrients when taken too close to meals. Keep at least 1 hour gap after eating before having chai or coffee.
+      <div class="nt d">This one simple habit makes a real difference to how well your body absorbs what you eat.</div>
+    </div>
+  </div>
+
+  <div class="card hi-red">
+    <div class="ch red"><div class="ct">3 — Sundays: keep meals light and simple</div></div>
+    <div class="cb">Sunday is your rest day — keep meals gentle and easy on digestion. Khichdi, plain dal-roti, soft foods. Avoid anything too heavy, oily, or spicy on Sundays specifically.
+      <div class="nt w">Simple meals on this day help your body focus on recovery rather than digestion.</div>
+    </div>
+  </div>
+
+  <div class="card hi-red">
+    <div class="ch red"><div class="ct">4 — Keep oil low — no fried food</div></div>
+    <div class="cb">Keep cooking oil to a minimum — max 2 tsp total per day across all meals. No deep fried snacks, no namkeen, no heavily oiled sabzi. Light tadka is perfectly fine.
+      <div class="nt ok">You're already a non-drinker — that's a great advantage and makes a real positive difference to your health.</div>
+    </div>
+  </div>
+
+  <div class="al i"><strong>Sunlight:</strong> 15–20 min of morning sunlight daily, especially on arms and legs. Free, powerful, and one of the best things you can do for your joints and energy.</div>
+
+</div>
+
+<!-- DIET SECTION -->
+<div id="diet" class="sec-anchor"></div>
+<div class="ph">
+  <div class="ph-eye">Nutrition</div>
+  <div class="ph-title">Your daily meal plan.<br>Simple, home-cooked, nourishing.</div>
+</div>
+<div class="cx">
+
+  <div class="day-toggle-wrap">
+    <button class="day-toggle-btn active" onclick="showDiet('train', this)">🏃 Active Day</button>
+    <button class="day-toggle-btn" onclick="showDiet('rest', this)">🛌 Rest Day</button>
+  </div>
+
+  <!-- ACTIVE DAY -->
+  <div class="diet-variant active" id="diet-train">
+    <div class="al i"><strong>Active day total: ~2,100 kcal · P 60g · C 300g · F 55g.</strong> Slightly more food on workout days to fuel recovery. All meals should be warm, freshly cooked, and eaten calmly — not rushed.</div>
+
+    <!-- BREAKFAST -->
+    <div class="card">
+      <div class="ch teal"><div class="ct">Breakfast</div><div class="cm">~450–500 kcal · Within 45 min of waking · Before any tablets</div></div>
+      <div class="cb">
+        <strong>Pick one option each morning. Rotate through the week.</strong>
+      </div>
+      <div class="cb" style="padding-top:0">
+        <div class="meal-opt">
+          <div class="meal-opt-label">Option 1 — Poha <span class="bx ok">Preferred</span></div>
+          <div class="meal-opt-body">
+            · 1.5 cups cooked poha (flattened rice) — with mustard seeds, curry leaves, onion, green peas<br>
+            · Add 30g roasted peanuts mixed in <span class="bx ok">Protein boost</span><br>
+            · 1 small glass warm milk (with turmeric / haldi — anti-inflammatory)<br>
+            · Small fruit — banana or guava
+          </div>
+          <div class="meal-opt-macro">~480 kcal · P 14g · C 72g · F 14g</div>
+        </div>
+        <div class="meal-opt">
+          <div class="meal-opt-label">Option 2 — Idli</div>
+          <div class="meal-opt-body">
+            · 3–4 idlis with sambar (dal-based — good protein) and coconut chutney<br>
+            · Add 1 boiled chana / sprouted moong on the side if available <span class="bx ok">Protein</span><br>
+            · 1 small glass warm milk
+          </div>
+          <div class="meal-opt-macro">~460 kcal · P 15g · C 75g · F 11g</div>
+        </div>
+        <div class="meal-opt">
+          <div class="meal-opt-label">Option 3 — Sandwich</div>
+          <div class="meal-opt-body">
+            · 2 whole wheat bread slices — toasted<br>
+            · Filling: paneer bhurji (50g crumbled paneer, onion, tomato, minimal oil) OR besan chilla folded in<br>
+            · 1 small glass warm milk
+          </div>
+          <div class="meal-opt-macro">~470 kcal · P 18g · C 58g · F 15g</div>
+        </div>
+        <div class="nt w">Wait minimum 60 min after breakfast before tea or coffee. Take your iron supplement as prescribed by your doctor — timing matters for absorption.</div>
+      </div>
+    </div>
+
+    <!-- MID MORNING SNACK -->
+    <div class="card">
+      <div class="ch info"><div class="ct">Mid-Morning Snack <span class="bx i">10:30–11:30am</span></div><div class="cm">~150–180 kcal · keeps energy steady, supports weight gain</div></div>
+      <div class="cb">
+        · 1 banana + 4–5 soaked almonds (overnight soak, peel skin off — easier to digest)<br>
+        · OR 30g roasted chana + 1 small fruit<br>
+        · OR 1 small bowl fruit chaat (banana, apple, guava — no citrus on empty stomach)
+        <div class="nt ok">Soaked almonds are anti-inflammatory. Even just 4–5 daily makes a difference over time.</div>
+      </div>
+    </div>
+
+    <!-- LUNCH -->
+    <div class="card">
+      <div class="ch"><div class="ct">Lunch</div><div class="cm">~600 kcal · 1:00–2:00pm · Biggest meal of the day</div></div>
+      <div class="cb">
+        <strong>Salad first — always.</strong> Cucumber + tomato + lemon juice. Before the main meal.<br><br>
+        <strong>Then pick one:</strong>
+      </div>
+      <div class="cb" style="padding-top:0">
+        <div class="meal-opt">
+          <div class="meal-opt-label">Option 1 — Dal Roti <span class="bx ok">Primary</span></div>
+          <div class="meal-opt-body">
+            · 3 medium rotis (wheat — add a little ajwain in dough, easier on digestion)<br>
+            · 1 bowl dal — masoor / moong / chana dal (rotate daily) <span class="bx ok">Protein</span><br>
+            · Sabzi — any seasonal vegetable, light tadka, minimal oil<br>
+            · Add ½ tsp ghee on rotis <span class="bx ok">Healthy fat + calories</span>
+          </div>
+          <div class="meal-opt-macro">~580 kcal · P 20g · C 88g · F 14g</div>
+        </div>
+        <div class="meal-opt">
+          <div class="meal-opt-label">Option 2 — Rajma / Chana Roti</div>
+          <div class="meal-opt-body">
+            · 3 rotis<br>
+            · 1 bowl rajma or chole — home cooked, light masala<br>
+            · Sabzi on the side<br>
+            · Squeeze lemon on rajma/chana <span class="bx ok">Vitamin C = better iron absorption</span>
+          </div>
+          <div class="meal-opt-macro">~600 kcal · P 22g · C 90g · F 12g</div>
+        </div>
+        <div class="meal-opt">
+          <div class="meal-opt-label">Option 3 — Paneer Sabzi Roti</div>
+          <div class="meal-opt-body">
+            · 3 rotis<br>
+            · 60–80g paneer sabzi — palak paneer or dry paneer bhurji preferred <span class="bx ok">Protein + calcium</span><br>
+            · Small bowl plain dal on the side
+          </div>
+          <div class="meal-opt-macro">~610 kcal · P 24g · C 82g · F 17g</div>
+        </div>
+        <div class="nt ok">🍋 Lemon on dal or sabzi — every single day. Vitamin C doubles iron absorption from plant foods. This one small habit matters a lot.</div>
+      </div>
+    </div>
+
+    <!-- EVENING SNACK -->
+    <div class="card">
+      <div class="ch amber"><div class="ct">Evening Snack <span class="bx w">Pre-workout fuel</span></div><div class="cm">~200 kcal · 30–45 min before workout</div></div>
+      <div class="cb">
+        · 1 banana + 1 small cup warm milk (with pinch of turmeric)<br>
+        · OR 2 whole wheat bread slices with peanut butter (1 tsp)<br>
+        · OR 1 small bowl upma / poha (light portion)
+        <div class="nt i">This is your fuel for the workout. Don't train on an empty stomach — always eat something 30–45 min before your session.</div>
+      </div>
+    </div>
+
+    <!-- PROTEIN SHAKE -->
+    <div class="card hi">
+      <div class="ch teal"><div class="ct">Protein Shake <span class="bx ok">Post-workout or bedtime</span></div><div class="cm">~120–140 kcal · 1 scoop with water or warm milk</div></div>
+      <div class="cb">
+        <strong>Pick one supplement — stick to one consistently:</strong><br><br>
+        · <strong>Biozyme Whey</strong> — whey protein, fast absorbing, good post-workout<br>
+        · <strong>SuperYou Yeast Protein</strong> — plant-based, yeast-derived, gentle on digestion<br>
+        · <strong>Beast Life Yeast Protein</strong> — similar to above, plant-based<br><br>
+        Mix 1 scoop with water or warm milk. Take within 30–45 min after workout, or at bedtime if no workout that day.
+        <div class="nt ok">Even 1 scoop daily adds 20–25g protein — which nearly doubles what most people eat in their regular diet. This is the single biggest lever for reaching 60g protein.</div>
+      </div>
+    </div>
+
+    <!-- DINNER -->
+    <div class="card">
+      <div class="ch dark"><div class="ct">Dinner</div><div class="cm">~500 kcal · 7:30–9:00pm · Light but complete</div></div>
+      <div class="cb">
+        <strong>Salad first — same as lunch.</strong><br><br>
+        <strong>Pick one:</strong>
+      </div>
+      <div class="cb" style="padding-top:0">
+        <div class="meal-opt">
+          <div class="meal-opt-label">Option 1 — Dal Roti (lighter portion)</div>
+          <div class="meal-opt-body">
+            · 2 rotis (one less than lunch)<br>
+            · 1 bowl dal — different variety from lunch (rotate masoor, moong, toor)<br>
+            · Sabzi — light, minimal oil<br>
+            · ½ tsp ghee on rotis
+          </div>
+          <div class="meal-opt-macro">~480 kcal · P 18g · C 72g · F 13g</div>
+        </div>
+        <div class="meal-opt">
+          <div class="meal-opt-label">Option 2 — Soya Chunks Sabzi Roti</div>
+          <div class="meal-opt-body">
+            · 2 rotis<br>
+            · 30–40g dry soya chunks (soaked, cooked in light masala) <span class="bx ok">High protein</span><br>
+            · Dal on side<br>
+            · Squeeze lemon
+          </div>
+          <div class="meal-opt-macro">~500 kcal · P 24g · C 68g · F 12g</div>
+        </div>
+        <div class="meal-opt">
+          <div class="meal-opt-label">Option 3 — Khichdi (especially on Sundays or sensitive days)</div>
+          <div class="meal-opt-body">
+            · 1 bowl moong dal khichdi — soft, easy to digest<br>
+            · Light jeera tadka in ghee<br>
+            · Sabzi on side if appetite allows<br>
+            · This is the go-to on days when stomach is sensitive
+          </div>
+          <div class="meal-opt-macro">~420 kcal · P 14g · C 68g · F 10g</div>
+        </div>
+        <div class="nt ok">🚶 After dinner — 10 minutes of slow walking if possible. Even inside the house. Helps digestion, reduces inflammation, and supports recovery.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REST DAY -->
+  <div class="diet-variant" id="diet-rest">
+    <div class="al i"><strong>Rest day total: ~1,900–2,000 kcal · P 60g · C 270g · F 52g.</strong> Slightly less food — no workout to fuel. Keep meals warm and easy to digest. Rest days are for recovery, not restriction.</div>
+
+    <!-- BREAKFAST -->
+    <div class="card">
+      <div class="ch teal"><div class="ct">Breakfast</div><div class="cm">~430 kcal · Slightly later is fine on rest days</div></div>
+      <div class="cb">
+        Same 3 options as active day — pick any. No need to eat early if not hungry.
+        <div class="meal-opt" style="margin-top:10px">
+          <div class="meal-opt-label">Poha with peanuts + warm milk</div>
+          <div class="meal-opt-body">Same as active day. Peanuts and milk keep protein consistent.</div>
+        </div>
+        <div class="meal-opt">
+          <div class="meal-opt-label">Idli + sambar + milk</div>
+          <div class="meal-opt-body">3 idlis, sambar, warm milk. Gentle on digestion.</div>
+        </div>
+        <div class="meal-opt">
+          <div class="meal-opt-label">Sandwich + milk</div>
+          <div class="meal-opt-body">Paneer or besan filling. Warm milk on side.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MID MORNING -->
+    <div class="card">
+      <div class="ch info"><div class="ct">Mid-Morning Snack</div><div class="cm">~150 kcal</div></div>
+      <div class="cb">
+        · 4–5 soaked almonds + 1 fruit<br>
+        · OR small bowl chana (boiled or roasted)<br>
+        · Water — minimum 2.5–3L daily
+      </div>
+    </div>
+
+    <!-- LUNCH -->
+    <div class="card">
+      <div class="ch"><div class="ct">Lunch</div><div class="cm">~580 kcal · Same structure as active day</div></div>
+      <div class="cb">
+        Salad first. Then dal-roti / rajma-roti / paneer sabzi as per active day options. Same rotation.<br><br>
+        On rest days, you can have a slightly smaller portion of roti (2 instead of 3) if not very hungry. Dal and sabzi portions stay the same.
+        <div class="nt ok">🍋 Lemon on dal — every day, including rest days.</div>
+      </div>
+    </div>
+
+    <!-- EVENING -->
+    <div class="card">
+      <div class="ch amber"><div class="ct">Evening Snack</div><div class="cm">~180 kcal · 4:30–5:30pm</div></div>
+      <div class="cb">
+        · 30g roasted chana + 1 fruit<br>
+        · OR 1 small bowl makhana (fox nuts) — dry roasted with black salt<br>
+        · OR peanut chikki (1 piece) — good calories + protein
+        <div class="nt ok">These are anti-inflammatory, easy on the stomach, and help keep calorie intake up on non-workout days.</div>
+      </div>
+    </div>
+
+    <!-- PROTEIN SHAKE -->
+    <div class="card hi">
+      <div class="ch teal"><div class="ct">Protein Shake</div><div class="cm">~130 kcal · Bedtime on rest days</div></div>
+      <div class="cb">
+        1 scoop whey / yeast protein with warm milk or water at bedtime. Rest days are when muscle repair happens — protein at night supports this.
+      </div>
+    </div>
+
+    <!-- DINNER -->
+    <div class="card">
+      <div class="ch dark"><div class="ct">Dinner</div><div class="cm">~480 kcal · Keep it light and warm</div></div>
+      <div class="cb">
+        Same 3 options as active day. On rest days especially, khichdi is a great choice — it's protein-rich, anti-inflammatory (jeera, ghee), and very easy for the body to process overnight.
+        <div class="nt ok">🚶 Post-dinner walk — even 5–10 mins. Helps with digestion and sleep quality.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="div"></div>
+
+  <!-- ANTI-INFLAMMATORY FOODS -->
+  <div class="slbl">Anti-inflammatory foods — include regularly</div>
+  <div class="card hi">
+    <div class="ch teal"><div class="ct">Eat these as often as possible</div></div>
+    <div class="cb">
+      · <strong>Haldi (turmeric)</strong> — add to warm milk, dal, sabzi daily. Most powerful anti-inflammatory spice available<br>
+      · <strong>Adrak (ginger)</strong> — in chai (limited), cooking, or warm water in morning<br>
+      · <strong>Jeera (cumin)</strong> — daily in tadka, khichdi, water<br>
+      · <strong>Methi seeds</strong> — soak overnight, have 1 tsp in morning with water<br>
+      · <strong>Palak (spinach)</strong> — iron + anti-inflammatory. In dal, sabzi, roti dough<br>
+      · <strong>Moong dal</strong> — easiest to digest, lowest inflammation load of all dals<br>
+      · <strong>Ghee (1 tsp/meal)</strong> — small amounts of ghee are anti-inflammatory and support joints<br>
+      · <strong>Almonds (soaked)</strong> — 4–5 daily. Easier on the body when soaked and peeled
+      <div class="nt ok"><strong>Haldi milk before bed</strong> is one of the simplest additions you can make — warm milk + ½ tsp turmeric + pinch of black pepper. Black pepper increases turmeric absorption by 20×.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch red"><div class="ct" style="color:var(--red)">Avoid completely</div></div>
+    <div class="cb">
+      Deep fried snacks (samosa, chips, namkeen) · Packaged / processed food · Very spicy food · Raw sprouts · Excess oil in cooking · Cold drinks / soda · Too much sugar · Maida-based items (white bread, biscuits daily) · <strong>Maggi / instant noodles</strong> — very high sodium, zero nutrition, inflammatory
+    </div>
+  </div>
+
+  <div class="al w"><strong>Tea & coffee:</strong> 2–3 cups a day is fine — just keep them away from meals. After breakfast: wait 1 hour. After lunch: 45 min. Never on an empty stomach.</div>
+
+  <div class="div"></div>
+
+  <!-- SUPPLEMENTS -->
+  <div class="slbl">Supplements</div>
+  <div class="stit">What to add and<br>when to take it.</div>
+
+  <div class="supp-item">
+    <div class="supp-icon">💊</div>
+    <div>
+      <div class="supp-name">Your prescribed supplements — as directed</div>
+      <div class="supp-desc">Continue all supplements exactly as your doctor has prescribed. Take them with food, never on an empty stomach. Timings matter — follow your doctor's schedule.</div>
+      <div class="supp-timing">Always with food · As prescribed</div>
+    </div>
+  </div>
+
+  <div class="supp-item">
+    <div class="supp-icon">☀️</div>
+    <div>
+      <div class="supp-name">Sunlight — 15–20 min daily</div>
+      <div class="supp-desc">Morning sunlight on arms and legs. Free, powerful, and directly supports bone health, joint health, and energy. One of the best things you can do every single day.</div>
+      <div class="supp-timing">Morning preferred · Any time before noon</div>
+    </div>
+  </div>
+
+  <div class="supp-item">
+    <div class="supp-icon">🟢</div>
+    <div>
+      <div class="supp-name">Protein Supplement — 1 scoop daily</div>
+      <div class="supp-desc">Biozyme Whey / SuperYou Yeast Protein / Beast Life Yeast Protein — pick one and stick to it. Mix with water or warm milk. Post-workout on training days, bedtime on rest days.</div>
+      <div class="supp-timing">~20–25g protein per scoop · Start after first week of settling into meals</div>
+    </div>
+  </div>
+
+  <div class="supp-item">
+    <div class="supp-icon">🧡</div>
+    <div>
+      <div class="supp-name">Multivitamin (existing)</div>
+      <div class="supp-desc">Continue as prescribed. Always take with food — never fasted.</div>
+      <div class="supp-timing">With any meal</div>
+  </div>
+
+</div>
+
+<!-- WORKOUT SECTION -->
+<div id="workout" class="sec-anchor"></div>
+<div class="ph">
+  <div class="ph-eye">Movement</div>
+  <div class="ph-title">Your gentle home plan.<br>Mobility first. Always.</div>
+</div>
+<div class="cx">
+
+  <div class="al ok"><strong>This plan is designed to complement your daily physio — not compete with it.</strong> These are gentle, low-impact sessions. If you have a physiotherapy session on a workout day, do the home workout after a 2–3 hour gap or the next morning. Listen to your body always.</div>
+
+  <div class="slbl">Weekly structure</div>
+  <div class="week-strip">
+    <div class="wday active-day"><div class="wd-name">Mon</div><div class="wd-icon">🟢</div><div class="wd-label">Session 1</div></div>
+    <div class="wday rest"><div class="wd-name">Tue</div><div class="wd-icon">🚶</div><div class="wd-label">Rest + Walk</div></div>
+    <div class="wday active-day"><div class="wd-name">Wed</div><div class="wd-icon">🟢</div><div class="wd-label">Session 2</div></div>
+    <div class="wday rest"><div class="wd-name">Thu</div><div class="wd-icon">🚶</div><div class="wd-label">Rest + Walk</div></div>
+    <div class="wday active-day"><div class="wd-name">Fri</div><div class="wd-icon">🟢</div><div class="wd-label">Session 3</div></div>
+    <div class="wday rest"><div class="wd-name">Sat</div><div class="wd-icon">☀️</div><div class="wd-label">Light Walk</div></div>
+    <div class="wday rest"><div class="wd-name">Sun</div><div class="wd-icon">🛌</div><div class="wd-label">Full Rest</div></div>
+  </div>
+
+  <div class="al w"><strong>Sunday is always full rest.</strong> Keep activity minimal. Light indoor walking only if you feel up to it.</div>
+
+  <div class="div"></div>
+
+  <div class="slbl">Every session structure — 25–30 min total</div>
+  <div class="stit">All 3 sessions follow<br>this same flow.</div>
+
+  <!-- WARM UP -->
+  <div class="card">
+    <div class="ch teal"><div class="ct">Warm-Up — 8 minutes · Always first</div></div>
+    <div>
+      <div class="ex-row mob"><div class="ex-n">1</div><div><div class="ex-name">Neck Rolls — slow, full range</div><div class="ex-sets">5 circles each direction · keep it gentle, no force</div></div></div>
+      <div class="ex-row mob"><div class="ex-n">2</div><div><div class="ex-name">Shoulder Circles — both arms</div><div class="ex-sets">10 forward, 10 backward · loosen the shoulder girdle</div></div></div>
+      <div class="ex-row mob"><div class="ex-n">3</div><div><div class="ex-name">Thoracic Rotation — seated on chair</div><div class="ex-sets">8 each side · hands on knees, rotate spine slowly</div></div></div>
+      <div class="ex-row mob"><div class="ex-n">4</div><div><div class="ex-name">Hip Circles — standing</div><div class="ex-sets">10 each direction · hands on hips</div></div></div>
+      <div class="ex-row mob"><div class="ex-n">5</div><div><div class="ex-name">Ankle Circles</div><div class="ex-sets">10 each foot each direction</div></div></div>
+      <div class="ex-row mob"><div class="ex-n">6</div><div><div class="ex-name">Gentle Marching in Place</div><div class="ex-sets">1 minute · slow, controlled</div></div></div>
+    </div>
+  </div>
+
+  <!-- MAIN WORK -->
+  <div class="card">
+    <div class="ch dark"><div class="ct">Main Work — 15 minutes · Resistance Bands + Bodyweight</div><div class="cm">2 sets each · no rushing · 60 sec rest between sets</div></div>
+    <div>
+      <div class="ex-row"><div class="ex-n">1</div><div><div class="ex-name">Resistance Band Shoulder Press <span class="bx ok">Seated</span></div><div class="ex-sets">2 × 10 reps · band under feet · press overhead slowly</div></div></div>
+      <div class="ex-row"><div class="ex-n">2</div><div><div class="ex-name">Resistance Band Row</div><div class="ex-sets">2 × 12 reps · band around a door handle or fixed point · pull elbows back gently</div></div></div>
+      <div class="ex-row"><div class="ex-n">3</div><div><div class="ex-name">Wall Push-Ups</div><div class="ex-sets">2 × 10 reps · hands on wall, not floor · no spinal strain</div></div></div>
+      <div class="ex-row"><div class="ex-n">4</div><div><div class="ex-name">Resistance Band Bicep Curl</div><div class="ex-sets">2 × 10 reps · standing, light band · slow and controlled</div></div></div>
+      <div class="ex-row"><div class="ex-n">5</div><div><div class="ex-name">Chair Sit-to-Stand (Squats)</div><div class="ex-sets">2 × 8 reps · sit fully on chair, stand up slowly · use arms for help if needed</div></div></div>
+      <div class="ex-row"><div class="ex-n">6</div><div><div class="ex-name">Resistance Band Side Steps</div><div class="ex-sets">2 × 10 steps each side · band around ankles · gentle hip strength</div></div></div>
+    </div>
+  </div>
+
+  <!-- COOL DOWN -->
+  <div class="card">
+    <div class="ch teal"><div class="ct">Cool-Down — 5 minutes · Always after</div></div>
+    <div>
+      <div class="ex-row mob"><div class="ex-n">1</div><div><div class="ex-name">Child's Pose</div><div class="ex-sets">45 seconds · arms forward, breathe deeply</div></div></div>
+      <div class="ex-row mob"><div class="ex-n">2</div><div><div class="ex-name">Seated Spinal Twist</div><div class="ex-sets">30 sec each side · sitting on floor or chair</div></div></div>
+      <div class="ex-row mob"><div class="ex-n">3</div><div><div class="ex-name">Hip Flexor Stretch — standing</div><div class="ex-sets">30 sec each leg · hold a wall for support</div></div></div>
+      <div class="ex-row mob"><div class="ex-n">4</div><div><div class="ex-name">Deep Breathing</div><div class="ex-sets">5 slow breaths · inhale 4 counts, exhale 6 counts</div></div></div>
+    </div>
+  </div>
+
+  <div class="al i"><strong>Important:</strong> If any exercise causes joint pain — stop immediately and do not push through it. Discomfort from effort is okay. Pain in joints is not. Always tell your physiotherapist what exercises you're doing at home.</div>
+
+  <div class="al ok">🎥 <strong>Not sure how an exercise looks?</strong> Just message me and I'll send you a dedicated video for that specific exercise. You don't need to figure anything out on your own — that's what I'm here for.</div>
+
+  <div class="div"></div>
+
+  <div class="card">
+    <div class="ch teal"><div class="ct">Daily Walking — Every day including rest days</div></div>
+    <div class="cb">
+      Start with 10–15 minutes daily. Build to 20–30 minutes over the month. Morning preferred. Any pace is fine — this is not cardio, it's recovery movement. Even walking around the house counts on bad days.
+      <div class="nt ok">Walking is one of the best activities for Ankylosing Spondylitis — it keeps the spine mobile and reduces stiffness. Your doctor also recommended it.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch info"><div class="ct">Sleep — 7–8 hours minimum</div></div>
+    <div class="cb">
+      You mentioned poor sleep quality. This is directly linked to inflammation — poor sleep raises inflammatory markers. Some things that help:<br><br>
+      · Same sleep and wake time every day<br>
+      · Haldi milk 30 min before bed (warm milk + turmeric + black pepper)<br>
+      · No screens 30 min before sleeping<br>
+      · Light dinner at least 2 hours before bed
+      <div class="nt w">With active joint inflammation, sleep quality is one of the highest-leverage things you can improve. It's not just rest — it's when your body repairs itself.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- NOTES SECTION — COACH FACING -->
+<div id="notes" class="sec-anchor notes-section"></div>
+<div class="notes-ph ph">
+  <div class="ph-eye" style="color:var(--amber)">Coach Notes</div>
+  <div class="ph-title">Check-in format<br>and clinical reference.</div>
+</div>
+<div class="cx">
+
+  <div class="al w"><strong>This section is for your reference only.</strong> Check-ins every 3 days via WhatsApp as agreed.</div>
+
+  <div class="slbl">Check-in format — every 3 days</div>
+  <div class="card">
+    <div class="ch amber"><div class="ct">What to ask Abhijeet every check-in</div></div>
+    <div>
+      <div class="checkin-row"><div class="checkin-icon">⚖️</div><div><div class="checkin-label">Weight</div><div class="checkin-desc">Morning, empty stomach, same clothes. Track weekly trend not daily fluctuation.</div></div></div>
+      <div class="checkin-row"><div class="checkin-icon">🦵</div><div><div class="checkin-label">Morning Stiffness Duration</div><div class="checkin-desc">AS marker. Ask: "How long does the stiffness take to ease after waking?" Less than 30 min = improving. More than 1 hour = flare concern.</div></div></div>
+      <div class="checkin-row"><div class="checkin-icon">🔢</div><div><div class="checkin-label">Pain Score (1–10)</div><div class="checkin-desc">Back pain + any joint. Ask for a number. Track trend over weeks. Any sudden spike → flag immediately, rest, advise doctor contact.</div></div></div>
+      <div class="checkin-row"><div class="checkin-icon">⚡</div><div><div class="checkin-label">Energy Level (1–10)</div><div class="checkin-desc">With Hb 9.5 + ATT, energy will be variable. Note patterns — if consistently below 4, re-evaluate workout intensity.</div></div></div>
+      <div class="checkin-row"><div class="checkin-icon">😴</div><div><div class="checkin-label">Sleep Quality</div><div class="checkin-desc">Hours slept + how he felt on waking. Poor sleep raises CRP. This is not just lifestyle — it's clinical.</div></div></div>
+      <div class="checkin-row"><div class="checkin-icon">🍽️</div><div><div class="checkin-label">Meals followed (Y/N + which)</div><div class="checkin-desc">Did he manage 3 meals + snacks? Which options did he use? Any nausea or stomach issues — especially post-MTX Sunday.</div></div></div>
+      <div class="checkin-row"><div class="checkin-icon">🏃</div><div><div class="checkin-label">Workouts completed</div><div class="checkin-desc">Which sessions done. Any exercises that caused discomfort — note and modify.</div></div></div>
+      <div class="checkin-row"><div class="checkin-icon">💊</div><div><div class="checkin-label">Any new symptoms / medication side effects</div><div class="checkin-desc">MTX nausea, stomach issues, unusual fatigue, breathlessness (ATT-related). If anything new → advise doctor visit immediately.</div></div></div>
+    </div>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="slbl">Milestone markers — month 1</div>
+  <div class="card">
+    <div class="ch teal"><div class="ct">What success looks like at 4 weeks</div></div>
+    <div>
+      <div class="tr"><div class="trm">Weight</div><div class="trv">58.5 → 59 kg</div><div class="trd">+0.5–1 kg. Very gentle gain is the goal. Not aggressive.</div></div>
+      <div class="tr"><div class="trm">Morning stiffness</div><div class="trv">Trending shorter</div><div class="trd">Even 10 min less per day compared to week 1 is positive progress.</div></div>
+      <div class="tr"><div class="trm">Energy</div><div class="trv">More stable across the day</div><div class="trd">Less mid-afternoon crash. This comes from consistent meals + iron absorption.</div></div>
+      <div class="tr"><div class="trm">Meals</div><div class="trv">3 meals + snacks consistently</div><div class="trd">Building the habit is the win. Getting calories and protein in regularly is the foundation.</div></div>
+      <div class="tr"><div class="trm">Workouts</div><div class="trv">3/week completed</div><div class="trd">No injuries. Mobility feeling slightly easier. That's month 1 success.</div></div>
+    </div>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="slbl">Medical reference — for your notes</div>
+  <div class="card hi-red">
+    <div class="ch red"><div class="ct">Current medical context · May 2026</div></div>
+    <div>
+      <div class="tr"><div class="trm">Diagnosis 1</div><div class="trv">ERJIA / Ankylosing Spondylitis</div><div class="trd">12 years. Axial + PeA + Enthesial. HLAB27+. Previously on Infliximab (biologic) 8 years — stopped Jan 2026. Now on DMARDs (MTX + Sulfasalazine).</div></div>
+      <div class="tr"><div class="trm">Diagnosis 2</div><div class="trv">Right-sided TB Pleural Effusion</div><div class="trd">On ATT since 06/02/2026. Responding to treatment. CP Phase (continuation phase).</div></div>
+      <div class="tr"><div class="trm">Hb</div><div class="trv">9.5 g/dL (17 May 2026)</div><div class="trd">Mild-moderate anaemia. On Livogen BD. Monitor — next blood test 15 June 2026.</div></div>
+      <div class="tr"><div class="trm">CRP</div><div class="trv">148 mg/L (17 May 2026)</div><div class="trd">Significantly elevated. Inflammation is active. Diet and lifestyle directly affect this. Recheck at follow-up.</div></div>
+      <div class="tr"><div class="trm">Liver enzymes</div><div class="trv">SGOT 19 / SGPT 20 (Normal)</div><div class="trd">Currently normal despite ATT. Avoid dietary hepatotoxic load (fried food, excess oil). Recheck 15 June.</div></div>
+      <div class="tr"><div class="trm">Follow-up</div><div class="trv">15 June 2026 — Medanta</div><div class="trd">CBC, CRP, SGPT, SGOT, Creatinine. Plan review after follow-up results.</div></div>
+    </div>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="slbl">Red flags — escalate immediately</div>
+  <div class="card hi-red">
+    <div class="ch red"><div class="ct">If Abhijeet reports any of these — stop plan, advise doctor</div></div>
+    <div class="cb">
+      · Sudden breathlessness or chest pain (TB / pleural effusion related)<br>
+      · Severe joint pain spike — score 8+ out of 10<br>
+      · Yellowing of eyes or skin (liver — ATT + MTX interaction)<br>
+      · Persistent vomiting or inability to eat after MTX<br>
+      · High fever<br>
+      · Unusual bruising or bleeding (Methotrexate effect on platelets)<br>
+      · Any new symptoms not present before
+      <div class="nt d">This client is on multiple serious medications and has active disease. When in doubt, always advise medical consultation first — not plan modification.</div>
+    </div>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="slbl">Coach notes — Maggi flag</div>
+  <div class="card">
+    <div class="ch amber"><div class="ct">Maggi / Instant Noodles — do not include</div></div>
+    <div class="cb">
+      Client mentioned Maggi as a usual food item. Do not include it in the plan or as a backup option. Reasons:<br><br>
+      · Very high sodium — worsens inflammation and blood pressure<br>
+      · Zero nutritional value — empty calories with no protein, fibre, or micronutrients<br>
+      · Liver is under ATT stress — processed food adds to that load<br>
+      · On Sulfasalazine + Etoricoxib — stomach lining protection is already a concern<br><br>
+      If he asks about it, redirect warmly to poha or upma as a quick easy option.
+    </div>
+  </div>
+
+</div>
+
+<div class="foot">
+  <div class="footn">Abhijeet Kumar</div>
+  Recovery · Inflammation Reduction · Weight Restoration<br>
+  Phase 1 — June 2026 · Review after follow-up 15 June 2026<br>
+  Male · 31 yrs · 58 kg · 167 cm · Pure Vegetarian · Home Workout · 3×/week<br><br>
+  <span style="font-size:11px;color:rgba(255,255,255,0.18)">This plan is for fitness and nutritional support only. All medical decisions remain with the treating physician. This plan is designed to complement, not replace, ongoing medical treatment.</span>
+</div>
+
+<nav class="bnav">
+  <a href="#overview" onclick="hl(this)"><span class="bnav-icon">📊</span>Overview</a>
+  <a href="#diet" onclick="hl(this)"><span class="bnav-icon">🍽️</span>Diet</a>
+  <a href="#workout" onclick="hl(this)"><span class="bnav-icon">🏃</span>Movement</a>
+  <a href="#notes" onclick="hl(this)"><span class="bnav-icon">📋</span>Notes</a>
+</nav>
+
+<script>
+function showDiet(type, btn) {
+  document.querySelectorAll('.diet-variant').forEach(d => d.classList.remove('active'));
+  document.querySelectorAll('.day-toggle-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('diet-' + type).classList.add('active');
+  btn.classList.add('active');
+}
+function hl(el) {
+  document.querySelectorAll('.bnav a').forEach(a => a.style.color = '');
+  el.style.color = '#fff';
+  setTimeout(() => { el.style.color = ''; }, 800);
+}
+const anchors = ['overview','diet','workout','notes'];
+const navLinks = document.querySelectorAll('.bnav a');
+function updateNav() {
+  let c = anchors[0];
+  anchors.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && window.scrollY >= el.offsetTop - 80) c = id;
+  });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + c ? '#ffffff' : '';
+  });
+}
+window.addEventListener('scroll', updateNav, { passive: true });
+updateNav();
+</script>
+</body>
+</html>
